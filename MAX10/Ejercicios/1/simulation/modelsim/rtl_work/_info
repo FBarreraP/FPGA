@@ -1,0 +1,88 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dG:/Meu Drive/FPGA/MAX10/Ejercicios/1/simulation/modelsim
+Eled
+Z1 w1578940210
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R0
+Z4 8G:/Meu Drive/FPGA/MAX10/Ejercicios/1/led.vhd
+Z5 FG:/Meu Drive/FPGA/MAX10/Ejercicios/1/led.vhd
+l0
+L4
+V5JDcALaD9<7R[BTa3al:z3
+!s100 LB^M8;WLW:dV0bQA27M:82
+Z6 OV;C;10.5b;63
+31
+Z7 !s110 1578941838
+!i10b 1
+Z8 !s108 1578941837.000000
+Z9 !s90 -reportprogress|300|-93|-work|work|G:/Meu Drive/FPGA/MAX10/Ejercicios/1/led.vhd|
+Z10 !s107 G:/Meu Drive/FPGA/MAX10/Ejercicios/1/led.vhd|
+!i113 1
+Z11 o-93 -work work
+Z12 tExplicit 1 CvgOpt 0
+Ablinking
+R2
+R3
+DEx4 work 3 led 0 22 5JDcALaD9<7R[BTa3al:z3
+l11
+L10
+Vigo5`SlHHeK=7`U5bn:a`3
+!s100 l9_a6FPI^<XFz4VCIzJ3h0
+R6
+31
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Eled_tb
+Z13 w1578941709
+R2
+R3
+R0
+Z14 8G:/Meu Drive/FPGA/MAX10/Ejercicios/1/led_tb.vht
+Z15 FG:/Meu Drive/FPGA/MAX10/Ejercicios/1/led_tb.vht
+l0
+L30
+VZaChiS>bFzkO@Y@ULY@F[3
+!s100 @QzbiehU8Ob;60lF@:FYo0
+R6
+31
+R7
+!i10b 1
+Z16 !s108 1578941838.000000
+Z17 !s90 -reportprogress|300|-93|-work|work|G:/Meu Drive/FPGA/MAX10/Ejercicios/1/led_tb.vht|
+Z18 !s107 G:/Meu Drive/FPGA/MAX10/Ejercicios/1/led_tb.vht|
+!i113 1
+R11
+R12
+Aled_arch
+R2
+R3
+DEx4 work 6 led_tb 0 22 ZaChiS>bFzkO@Y@ULY@F[3
+l49
+L34
+V42_GZQPgJ[0K>A9FfO@V?3
+!s100 ^BA0DgElIV^<3iA`@McR=0
+R6
+31
+R7
+!i10b 1
+R16
+R17
+R18
+!i113 1
+R11
+R12

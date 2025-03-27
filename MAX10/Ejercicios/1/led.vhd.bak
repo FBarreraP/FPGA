@@ -1,0 +1,17 @@
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.all;
+
+ENTITY led IS
+
+PORT(a : IN bit;
+	  b : OUT bit);
+	  
+END led;
+
+ARCHITECTURE blinking OF led IS
+BEGIN
+
+b <= a;
+
+
+END blinking;
