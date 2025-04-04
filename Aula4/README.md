@@ -121,71 +121,48 @@ Agregar el archivo test bench en las configuraciones de simulación, en la opci�
 
 Dar click en la opción Start Compilation para compilar todo el proyecto y ejecutar la simulación en ModelSim en la opción Tools > Run Simulation Tool > RTL Simulation
 
+<h3>Crear bloques</h3>
 
-
-
-
-
-
-
-
-
-Para crear un bloque a partir de un archivo VHDL en Quartus, puedes seguir estos pasos:
-
-Compila tu archivo VHDL:
-
-Asegúrate de que tu archivo VHDL esté libre de errores de sintaxis y compílalo en Quartus.
-
-Genera el símbolo del bloque:
-
-Ve al menú "File" y selecciona "Create/Update".
-
-Luego, elige la opción "Create Symbol File for Current File". Esto generará un archivo de símbolo (.bsf) que representa tu diseño VHDL como un bloque.
+Para crear un bloque que represente un archivo VHDL en Quartus, primero se debe compilar para garantizar que no hayan errores en el código en la opción Start Analysis & Synthesis, posteriormente, abrir el archivo (ej: GATE_AND.vhd) y seleccionar la opción File > Create/Update > Create Symbol Files for Current File, la cual genera un archivo de símbolo (ej: GATE_AND.bsf) y abrirlo en Quartus.
 
 ![alt text](image-4.png)
 
-Usa el bloque en un diseño esquemático:
+<h3>Conectar bloques</h3>
 
-Abre un archivo de diseño esquemático (.bdf) en Quartus.
+Crear un archivo "Block Diagram/Schematic File" (ej: GATES_AND_blocks.bdf) e insertar un simbolo dando click derecho y seleccionar la opción Insert > Symbol, posteriormente seleccionar en las librerías del proyecto el bloque generado anteriormente (ej: GATE_AND.bsf) y finalmente, conectar los componentes y las entradas y salidas en el diseño esquemático.
 
-Inserta el símbolo generado desde el menú de herramientas de bloques o arrástralo directamente al diseño.
-
-Conecta el bloque:
-
-Conecta las entradas y salidas del bloque a otros componentes en tu diseño esquemático.
-
-![alt text](image-3.png)
+![alt text](image-5.png)
 
 Del cual se genera el código en VHDL en la opción File > Create/Update > Create HDL Design File from Current File
 
 ```vhdl
 -- PROGRAM		"Quartus Prime"
 -- VERSION		"Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition"
--- CREATED		"Thu Apr 03 13:02:58 2025"
+-- CREATED		"Thu Apr 03 22:18:06 2025"
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
 
 LIBRARY work;
 
-ENTITY A3_1_blocks IS 
-    PORT
-    (
-        in1 :  IN  STD_LOGIC;
-        in2 :  IN  STD_LOGIC;
-        in3 :  IN  STD_LOGIC;
-        in4 :  IN  STD_LOGIC;
-        out1 :  OUT  STD_LOGIC
-    );
-END A3_1_blocks;
+ENTITY GATE_AND_blocks IS 
+	PORT
+	(
+		in1 :  IN  STD_LOGIC;
+		in2 :  IN  STD_LOGIC;
+		in3 :  IN  STD_LOGIC;
+		in4 :  IN  STD_LOGIC;
+		out1 :  OUT  STD_LOGIC
+	);
+END GATE_AND_blocks;
 
-ARCHITECTURE bdf_type OF A3_1_blocks IS 
+ARCHITECTURE bdf_type OF GATE_AND_blocks IS 
 
-COMPONENT a3_1
-    PORT(a : IN STD_LOGIC;
-         b : IN STD_LOGIC;
-         c : OUT STD_LOGIC
-    );
+COMPONENT gate_and
+	PORT(a : IN STD_LOGIC;
+		 b : IN STD_LOGIC;
+		 c : OUT STD_LOGIC
+	);
 END COMPONENT;
 
 SIGNAL	SYNTHESIZED_WIRE_0 :  STD_LOGIC;
@@ -196,22 +173,22 @@ BEGIN
 
 
 
-b2v_inst : a3_1
+b2v_inst : gate_and
 PORT MAP(a => in1,
-         b => in2,
-         c => SYNTHESIZED_WIRE_0);
+		 b => in2,
+		 c => SYNTHESIZED_WIRE_0);
 
 
-b2v_inst1 : a3_1
+b2v_inst1 : gate_and
 PORT MAP(a => in3,
-         b => in4,
-         c => SYNTHESIZED_WIRE_1);
+		 b => in4,
+		 c => SYNTHESIZED_WIRE_1);
 
 
-b2v_inst2 : a3_1
+b2v_inst2 : gate_and
 PORT MAP(a => SYNTHESIZED_WIRE_0,
-         b => SYNTHESIZED_WIRE_1,
-         c => out1);
+		 b => SYNTHESIZED_WIRE_1,
+		 c => out1);
 
 
 END bdf_type;

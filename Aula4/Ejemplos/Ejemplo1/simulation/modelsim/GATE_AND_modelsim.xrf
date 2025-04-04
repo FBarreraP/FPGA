@@ -1,4 +1,6 @@
 vendor_name = ModelSim
+source_file = 1, G:/Meu Drive/FPGA/Aula4/Ejemplos/Ejemplo1/GATE_AND_blocks.vhd
+source_file = 1, G:/Meu Drive/FPGA/Aula4/Ejemplos/Ejemplo1/GATE_AND.bsf
 source_file = 1, G:/Meu Drive/FPGA/Aula4/Ejemplos/Ejemplo1/GATE_AND_tb.vht
 source_file = 1, G:/Meu Drive/FPGA/Aula4/Ejemplos/Ejemplo1/GATE_AND.vhd
 source_file = 1, c:/intelfpga_lite/18.1/quartus/libraries/vhdl/ieee/prmtvs_b.vhd

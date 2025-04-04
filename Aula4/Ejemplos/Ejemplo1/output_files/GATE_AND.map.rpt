@@ -1,5 +1,5 @@
 Analysis & Synthesis report for GATE_AND
-Thu Apr 03 21:29:56 2025
+Thu Apr 03 22:24:26 2025
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -42,7 +42,7 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Apr 03 21:29:56 2025       ;
+; Analysis & Synthesis Status        ; Successful - Thu Apr 03 22:24:26 2025       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; GATE_AND                                    ;
 ; Top-level Entity Name              ; GATE_AND                                    ;
@@ -257,10 +257,13 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Thu Apr 03 21:29:22 2025
+    Info: Processing started: Thu Apr 03 22:23:57 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off A4_1 -c GATE_AND
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file gate_and_blocks.vhd
+    Info (12022): Found design unit 1: GATE_AND_blocks-bdf_type File: G:/Meu Drive/FPGA/Aula4/Ejemplos/Ejemplo1/GATE_AND_blocks.vhd Line: 35
+    Info (12023): Found entity 1: GATE_AND_blocks File: G:/Meu Drive/FPGA/Aula4/Ejemplos/Ejemplo1/GATE_AND_blocks.vhd Line: 24
 Info (12021): Found 2 design units, including 1 entities, in source file gate_and.vhd
     Info (12022): Found design unit 1: GATE_AND-GATE_AND_ARCH File: G:/Meu Drive/FPGA/Aula4/Ejemplos/Ejemplo1/GATE_AND.vhd Line: 10
     Info (12023): Found entity 1: GATE_AND File: G:/Meu Drive/FPGA/Aula4/Ejemplos/Ejemplo1/GATE_AND.vhd Line: 4
@@ -273,9 +276,9 @@ Info (21057): Implemented 4 device resources after synthesis - the final resourc
     Info (21059): Implemented 1 output pins
     Info (21061): Implemented 1 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 4783 megabytes
-    Info: Processing ended: Thu Apr 03 21:29:56 2025
-    Info: Elapsed time: 00:00:34
-    Info: Total CPU time (on all processors): 00:01:05
+    Info: Peak virtual memory: 4785 megabytes
+    Info: Processing ended: Thu Apr 03 22:24:26 2025
+    Info: Elapsed time: 00:00:29
+    Info: Total CPU time (on all processors): 00:00:57
 
 
