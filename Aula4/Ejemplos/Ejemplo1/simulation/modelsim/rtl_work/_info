@@ -1,0 +1,88 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dG:/Meu Drive/FPGA/Aula4/Ejemplos/Ejemplo1/simulation/modelsim
+Egate_and
+Z1 w1743731823
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R0
+Z4 8G:/Meu Drive/FPGA/Aula4/Ejemplos/Ejemplo1/GATE_AND.vhd
+Z5 FG:/Meu Drive/FPGA/Aula4/Ejemplos/Ejemplo1/GATE_AND.vhd
+l0
+L4
+VUla>31^_<GJjLaA2oa[Dc2
+!s100 CJE;R0G[zIUH=O0ge1el51
+Z6 OV;C;10.5b;63
+31
+Z7 !s110 1743734190
+!i10b 1
+Z8 !s108 1743734190.000000
+Z9 !s90 -reportprogress|300|-93|-work|work|G:/Meu Drive/FPGA/Aula4/Ejemplos/Ejemplo1/GATE_AND.vhd|
+Z10 !s107 G:/Meu Drive/FPGA/Aula4/Ejemplos/Ejemplo1/GATE_AND.vhd|
+!i113 1
+Z11 o-93 -work work
+Z12 tExplicit 1 CvgOpt 0
+Agate_and_arch
+R2
+R3
+DEx4 work 8 gate_and 0 22 Ula>31^_<GJjLaA2oa[Dc2
+l11
+L10
+Vl5lABTPV]dP[3ieIWhga00
+!s100 C97gk^gHV02DoQCPd4bkY2
+R6
+31
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Egate_and_tb
+Z13 w1743734166
+R2
+R3
+R0
+Z14 8G:/Meu Drive/FPGA/Aula4/Ejemplos/Ejemplo1/GATE_AND_tb.vht
+Z15 FG:/Meu Drive/FPGA/Aula4/Ejemplos/Ejemplo1/GATE_AND_tb.vht
+l0
+L30
+VL[^6Vmfee[S;U:6EVC]m:3
+!s100 AD8fXG?lTJBTgoPW7eMcR2
+R6
+31
+Z16 !s110 1743734191
+!i10b 1
+Z17 !s108 1743734191.000000
+Z18 !s90 -reportprogress|300|-93|-work|work|G:/Meu Drive/FPGA/Aula4/Ejemplos/Ejemplo1/GATE_AND_tb.vht|
+Z19 !s107 G:/Meu Drive/FPGA/Aula4/Ejemplos/Ejemplo1/GATE_AND_tb.vht|
+!i113 1
+R11
+R12
+Agate_and_tb_arch
+R2
+R3
+DEx4 work 11 gate_and_tb 0 22 L[^6Vmfee[S;U:6EVC]m:3
+l48
+L33
+VTJ_V<WBAjcDl;:0I6;=]C3
+!s100 jbTlUY9Pg:6<meF;2nZda1
+R6
+31
+R16
+!i10b 1
+R17
+R18
+R19
+!i113 1
+R11
+R12

@@ -1,0 +1,9 @@
+transcript on
+if {[file exists rtl_work]} {
+	vdel -lib rtl_work -all
+}
+vlib rtl_work
+vmap work rtl_work
+
+vcom -93 -work work {G:/Meu Drive/FPGA/Aula3/Ejemplo1/A3_1.vhd}
+

@@ -1,0 +1,13 @@
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.all;
+
+ENTITY GATE_AND IS
+    PORT(a,b : IN std_logic;
+          c : OUT std_logic
+    );	  
+END GATE_AND;
+
+ARCHITECTURE GATE_AND_ARCH OF GATE_AND IS
+    BEGIN
+    c <= (a AND b);
+END GATE_AND_ARCH;

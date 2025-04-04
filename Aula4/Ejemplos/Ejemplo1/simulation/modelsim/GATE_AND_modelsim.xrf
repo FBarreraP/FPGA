@@ -1,0 +1,14 @@
+vendor_name = ModelSim
+source_file = 1, G:/Meu Drive/FPGA/Aula4/Ejemplos/Ejemplo1/GATE_AND_tb.vht
+source_file = 1, G:/Meu Drive/FPGA/Aula4/Ejemplos/Ejemplo1/GATE_AND.vhd
+source_file = 1, c:/intelfpga_lite/18.1/quartus/libraries/vhdl/ieee/prmtvs_b.vhd
+source_file = 1, c:/intelfpga_lite/18.1/quartus/libraries/vhdl/ieee/prmtvs_p.vhd
+source_file = 1, c:/intelfpga_lite/18.1/quartus/libraries/vhdl/ieee/timing_b.vhd
+source_file = 1, c:/intelfpga_lite/18.1/quartus/libraries/vhdl/ieee/timing_p.vhd
+source_file = 1, G:/Meu Drive/FPGA/Aula4/Ejemplos/Ejemplo1/db/GATE_AND.cbx.xml
+design_name = hard_block
+design_name = GATE_AND
+instance = comp, \c~output\, c~output, GATE_AND, 1
+instance = comp, \b~input\, b~input, GATE_AND, 1
+instance = comp, \a~input\, a~input, GATE_AND, 1
+instance = comp, \c~0\, c~0, GATE_AND, 1
