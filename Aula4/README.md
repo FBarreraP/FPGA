@@ -49,7 +49,7 @@ END GATE_AND_arch;
 
 Dar click en la opción Start Compilation para generar la plantilla test bench, la cual se encuentra en la carpeta simulation dentro de la ruta del proyecto y allí se encontrarár el archivo test bench (.vht), el cual se debe generar accesando a la opción Processing > Start > Start Test Bench Template Writer, y posteriormente se debe crear una copia de dicho archivo y pegarla en la ruta inicial del proyecto y cambiarle el nombre (ej: GATE_AND_tb.vht), para así finalmente agregar ese archivo en el proyecto en Quartus y editarlo con respecto al nombre de la entidad y de la arquitectura (ej: GATE_AND_tb y GATE_AND_tb_arch), los valores de las señales tanto iniciales como durante el proceso always y los tiempos de espera de las señales (delays).
 
-```vht
+```vhdl
 -- Generated on "04/03/2025 21:07:16"
                                                             
 -- Vhdl Test Bench template for design  :  GATE_AND
