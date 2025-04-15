@@ -4,9 +4,11 @@ Simulación y verificación: Pruebas de diseño.
 
 Programación de la FPGA con herramientas específicas.
 
+<h1>Aula 4</h1>
 
+Esta clase consiste en 
 
-
+<h2>Quartus y ModelSim</h2>
 
 Descargar Intel® Quartus® Prime Lite Edition v18.1 para Windows <a href="https://www.intel.com/content/www/us/en/collections/products/fpga/software/downloads.html">aquí</a> y posteriormente descargar los siguientes <i>softwares</i>:
 
