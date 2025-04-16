@@ -130,7 +130,11 @@ Las librerías son códigos utilizados frecuentemente, las cuales pueden ser reu
 
 La entidad
 
-![alt text](image-12.png)
+<div align="center">
+<img src="image-12.png" alt="Entidad compuerta AND" width="500"/>
+<br>
+<figcaption>Fuente: Autor</figcaption>
+</div>
 
 ```vhdl
 ENTITY Gate_AND IS
@@ -142,8 +146,18 @@ END Gate_AND;
 
 La arquitectura
 
+<div align="center">
+<img src="image-14.png" alt="Arquitectura compuerta AND" width="500"/>
+<br>
+<figcaption>Fuente: Autor</figcaption>
+</div>
 
-
+```vhdl
+ARCHITECTURE arch_Gate_AND OF Gate_AND IS
+    BEGIN
+        c <= a AND b;
+END arch_Gate_AND;
+```
 
 
 
@@ -191,7 +205,7 @@ END Gate_AND;
 
 ARCHITECTURE arch_Gate_AND OF Gate_AND IS
     BEGIN
-        c <= (a AND b);
+        c <= a AND b;
 END arch_Gate_AND;
 ```
 
