@@ -38,7 +38,8 @@ Arquitectura interna de una FPGA: LUTs (Look-Up Tables), flip-flops, bloques DSP
 
 <h3>FPGA Altera Cyclone IV EP4CE6E22C8</h3>
 
-El chip de la FPGA Altera Cyclone IV EP4CE6E22C8 es de montaje superficial de 144 pines
+El chip de la FPGA Altera Cyclone IV EP4CE6E22C8 es de montaje superficial de paquete QFP de 144 pines
+Tiene un procesador NIOS II
 
 <div align="center">
 <img src="image-5.png" alt="Chip FPGA Altera EP4CE6"/>
@@ -72,6 +73,8 @@ El chip de la FPGA Altera Cyclone IV EP4CE6E22C8 es de montaje superficial de 14
 
 La tarjeta de desarrollo integra FPGA y periféricos
 
+El chip de configuración serial es EPCS16N, para descargar y depurar el código del programa a través de JTAG.
+
 <div align="center">
 <img src="image.png" alt="Tarjeta EP4CE6"/>
 <br>
@@ -81,12 +84,12 @@ La tarjeta de desarrollo integra FPGA y periféricos
 <div align="center">
 <img src="image-8.png" alt="Periféricos Tarjeta EP4CE6"/>
 <br>
-<figcaption>Fuente: </figcaption>
+<figcaption>Fuente: https://store.roboticsbd.com/development-boards/1827-altera-cyclone-iv-ep4ce6-fpga-development-board-niosii-ep4ce-pcb-and-usb-blaster-jtag-as-programmer-robotics-bangladesh.html</figcaption>
 </div>
 
 <h2>Programador USB Blaster</h2>
 
-El programador USB Blaster es utilizado para transferir el código del PC a la FPGA a través de Comunicación JTAG
+El programador USB Blaster es utilizado para transferir el código del PC a la FPGA a través de Comunicación JTAG, en el cual se realiza una transferencia más rápida y requiere un archivo .SOF.
 
 <div align="center">
 <img src="image-4.png" alt="Programador USB Blaster"/>
@@ -98,9 +101,9 @@ El programador USB Blaster es utilizado para transferir el código del PC a la F
 
 VHDL es un lenguaje de descripción de hardware a través del cual se describe (modela) la estructura y el comportamiento de circuitos digitales ejecutados en paralelo e impulsados por eventos (clock). VHDL corresponde a la mezcla entre VHSIC (Very High Speed Integrated Circuit) y HDL (Hardware Description Language).
 
-Un código en VHDL se caracteriza por dos partes fundamentales: 1. Entidad y 2. Arquitectura. La entidad es la estructura del bloque y la arquitectura es el comportamiento de dicho bloque
+Un código en VHDL se caracteriza por dos partes fundamentales: 1. Entidad y 2. Arquitectura. La entidad es la estructura del bloque y la arquitectura es el comportamiento de dicho bloque. La sintaxis de un código en VHDL está estructurado de la siguiente manera:
 
-La sintaxis de un código en VHDL está estructurado de la siguiente manera:
+behavioral
 
 ```vhdl
 LIBRARY library_name;
@@ -113,15 +116,36 @@ ENTITY entity_name IS
         ...
         portn_name : port_mode port_type;
     );
-END entity_name
+END entity_name;
 
 ARCHITECTURE architecture_name OF entity_name IS
     declarations
     BEGIN
         code ...
-END architecture_name
+END architecture_name;
 ```
 
+Las librerías son códigos utilizados frecuentemente, las cuales pueden ser reutilizadas en todos los proyectos. Hay tres librerías muy utilizadas en VHDL:
+
+1. IEEE: específica sistemas lógicos multinivel (indispensable)
+2. std: recurso de librería para ambiente de diseño de VHDL
+3. work: usado para guardar el proyecto y el archivo del programa .vhd 
+
+```vhdl
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.all;
+
+ENTITY A3_1 IS
+	PORT(a,b : IN std_logic;
+		  c : OUT std_logic
+	);	  
+END A3_1;
+
+ARCHITECTURE arch_blinking OF A3_1 IS
+	BEGIN
+	    c <= (a AND b);
+END arch_blinking;
+```
 
 <h2>Test bench</h2>
 
