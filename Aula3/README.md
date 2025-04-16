@@ -1,6 +1,6 @@
 <h1>Aula 3</h1>
 
-Esta clase consiste en presentar una introducción a la FPGA y a VHDL
+Esta clase consiste en presentar una introducción a FPGA y a VHDL
 
 <h2>FPGA</h2>
 
@@ -12,9 +12,9 @@ Un FPGA es un arreglo de compuertas programables en campo, es decir, es una arqu
 <figcaption>Fuente: https://architecnologia.es/nucleos-licencias-hardware</figcaption>
 </div>
 
-<h3>Arquitectura de la FPGA</h3>
+<h3>Arquitectura del FPGA</h3>
 
-Arquitectura interna de una FPGA: LUTs (Look-Up Tables), flip-flops, bloques DSP, etc.
+Arquitectura interna de un FPGA: LUTs (Look-Up Tables), flip-flops, bloques DSP, etc.
 
 - Bloques Lógicos Configurables (CLBs): Contienen los elementos lógicos básicos (BLEs), tales como Look-Up Tables (LUTs) de 4 entradas, flip flops (FF) e multiplexadores, donde las LUTs son tablas de verdad de las compuestas booleanas y de las combinaciones entre estas; dichos elementos lógicos son utilizados de acuerdo a las instrucciones de la descripción del programa (Verilog y VHDL).
 
@@ -38,8 +38,9 @@ Arquitectura interna de una FPGA: LUTs (Look-Up Tables), flip-flops, bloques DSP
 
 <h3>FPGA Altera Cyclone IV EP4CE6E22C8</h3>
 
-El chip de la FPGA Altera Cyclone IV EP4CE6E22C8 es de montaje superficial de paquete QFP de 144 pines
+El chip del FPGA Altera Cyclone IV EP4CE6E22C8 es de montaje superficial de paquete QFP de 144 pines
 Tiene un procesador NIOS II
+La documentación de este FPGA puede ser encontrada <a href="https://www.intel.com/content/www/us/en/docs/programmable/767845/current/cyclone-iv-featured-documentation-quick.html">aquí</a>
 
 <div align="center">
 <img src="image-5.png" alt="Chip FPGA Altera EP4CE6"/>
@@ -68,6 +69,13 @@ Tiene un procesador NIOS II
 <br>
 <figcaption>Fuente: https://www.ipcb.com/es/pcb-blog/10125.html</figcaption>
 </div>
+
+<div align="center">
+<img src="image-11.png" alt="Diseños de flujo de hardware vs software"/>
+<br>
+<figcaption>Fuente: https://circuitdigest.com/tutorial/what-is-fpga-introduction-and-programming-tools</figcaption>
+</div>
+
 
 <h2>Tarjeta de desarrollo</h2>
 
@@ -101,9 +109,53 @@ El programador USB Blaster es utilizado para transferir el código del PC a la F
 
 VHDL es un lenguaje de descripción de hardware a través del cual se describe (modela) la estructura y el comportamiento de circuitos digitales ejecutados en paralelo e impulsados por eventos (clock). VHDL corresponde a la mezcla entre VHSIC (Very High Speed Integrated Circuit) y HDL (Hardware Description Language).
 
-Un código en VHDL se caracteriza por dos partes fundamentales: 1. Entidad y 2. Arquitectura. La entidad es la estructura del bloque y la arquitectura es el comportamiento de dicho bloque. La sintaxis de un código en VHDL está estructurado de la siguiente manera:
+Asignación
+Constantes
+Variables
+Señales
+Condicionales
+for
+
+Las librerías son códigos utilizados frecuentemente, las cuales pueden ser reutilizadas en todos los proyectos. Hay tres librerías muy utilizadas en VHDL:
+
+1. IEEE: específica sistemas lógicos multinivel (indispensable) y proporciona tipos de datos estándarizados
+2. std: recurso de librería para ambiente de diseño de VHDL
+3. work: usado para guardar el proyecto y el archivo del programa .vhd 
+
+<div align="center">
+<img src="image-10.png" alt="Conversión entre tipos de datos VHDL"/>
+<br>
+<figcaption>Fuente: https://blog.csdn.net/weixin_30723433/article/details/95658653</figcaption>
+</div>
+
+La entidad
+
+![alt text](image-12.png)
+
+```vhdl
+ENTITY Gate_AND IS
+    PORT(a,b : IN std_logic;
+        c : OUT std_logic
+    );
+END Gate_AND;
+```
+
+La arquitectura
+
+
+
+
+
 
 behavioral
+concurrente
+
+
+
+
+Un código en VHDL se caracteriza por dos partes fundamentales: 1. Entidad y 2. Arquitectura. La entidad es la estructura del bloque y la arquitectura es el comportamiento de dicho bloque. La sintaxis de un código en VHDL está estructurado de la siguiente manera:
+
+
 
 ```vhdl
 LIBRARY library_name;
@@ -125,26 +177,22 @@ ARCHITECTURE architecture_name OF entity_name IS
 END architecture_name;
 ```
 
-Las librerías son códigos utilizados frecuentemente, las cuales pueden ser reutilizadas en todos los proyectos. Hay tres librerías muy utilizadas en VHDL:
 
-1. IEEE: específica sistemas lógicos multinivel (indispensable)
-2. std: recurso de librería para ambiente de diseño de VHDL
-3. work: usado para guardar el proyecto y el archivo del programa .vhd 
 
 ```vhdl
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.all;
 
-ENTITY A3_1 IS
-	PORT(a,b : IN std_logic;
-		  c : OUT std_logic
-	);	  
-END A3_1;
+ENTITY Gate_AND IS
+    PORT(a,b : IN std_logic;
+        c : OUT std_logic
+    );
+END Gate_AND;
 
-ARCHITECTURE arch_blinking OF A3_1 IS
-	BEGIN
-	    c <= (a AND b);
-END arch_blinking;
+ARCHITECTURE arch_Gate_AND OF Gate_AND IS
+    BEGIN
+        c <= (a AND b);
+END arch_Gate_AND;
 ```
 
 <h2>Test bench</h2>
