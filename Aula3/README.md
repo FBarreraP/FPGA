@@ -252,7 +252,7 @@ ELSE
 END IF;
 ```
 
-<h5>case-when<h5>
+<h5>case-when</h5>
 
 La sintaxis es la siguiente:
 
