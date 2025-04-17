@@ -109,18 +109,23 @@ El programador USB Blaster es utilizado para transferir el código del PC a la F
 
 VHDL es un lenguaje de descripción de hardware a través del cual se describe (modela) la estructura y el comportamiento de circuitos digitales ejecutados en paralelo e impulsados por eventos (clock). VHDL corresponde a la mezcla entre VHSIC (Very High Speed Integrated Circuit) y HDL (Hardware Description Language).
 
-Asignación
-Constantes
-Variables
-Señales
-Condicionales
-for
+<h3>Tipos de datos</h3>
 
-Las librerías son códigos utilizados frecuentemente, las cuales pueden ser reutilizadas en todos los proyectos. Hay tres librerías muy utilizadas en VHDL:
+time
 
-1. IEEE: específica sistemas lógicos multinivel (indispensable) y proporciona tipos de datos estándarizados
-2. std: recurso de librería para ambiente de diseño de VHDL
-3. work: usado para guardar el proyecto y el archivo del programa .vhd 
+<h4>Paquete standard de la biblioteca std</h4>
+- bit: representa un estado lógico de '0' o '1' y se pueden realizar operaciones lógicas y de comparación.
+- integer: representa un valor entero en el rango de $-2^{32}$ a $2^{32}-1$ y se pueden realizar operaciones aritméticas y de comparación.
+
+<h4>paquete std_logic_1164 de la biblioteca IEEE</h4>
+- std_logic: representa diferentes estados lógicos, U, X, 0, 1, Z, W, L, H, -.
+- std_logic_vector: es vector de bits en el que cada bit representa un estado lógico.
+
+<h4>Paquete numeric_std de la biblioteca IEEE</h4>
+signed y unsigned
+
+<h4>Paquete fixed_pkg y float_pkg de la biblioteca </h4>
+punto fijo y flotante
 
 <div align="center">
 <img src="image-10.png" alt="Conversión entre tipos de datos VHDL"/>
@@ -128,7 +133,117 @@ Las librerías son códigos utilizados frecuentemente, las cuales pueden ser reu
 <figcaption>Fuente: https://blog.csdn.net/weixin_30723433/article/details/95658653</figcaption>
 </div>
 
-La entidad
+<h3>Asignación</h3>
+
+La asignación de valores para constantes y variables es realizada a través del simbolo ':=', las cuales ocurren inmediatamente, independientemente del tiempo, y para puertos de entrada, salida y bidireccionales, al igual que para señales, la asignación es hecha por medio del simbolo '<=', las cuales ocurren en el siguiente cambio de tiempo (sentencia WAIT o fin de sentencia concurrente).
+
+* La inicialización de constantes, variables y señales se realiza a través del simbolo ':='.
+
+<h3>Constantes</h3>
+
+Las constantes mantienen el valor inicializado del tipo de dato declarado durante toda la ejecución del código. Se declaran dentro de la arquitectura, pero antes del 'BEGIN'. La sintaxis es la siguiente:
+
+```vhdl
+CONSTANT constante1 : integer := 4;
+CONSTANT constante2 : std_logic := `1' ‘1';
+CONSTANT constante3 : time := 10 ns;
+```
+
+<h3>Variables</h3>
+
+Las variables guardan un valor del tipo de dato declarado y pueden ser modificadas a lo largo de la ejecución del código. Si no se inicializa, toma por defecto el menor valor del tipo de dato declarado. Se declaran dentro de los procesos o subprogramas, aunque con el comando SHARED pueden ser compatidas dentro de toda la arquitectura (no recomendable), pero antes del 'BEGIN'. La sintaxis es la siguiente:
+
+```vhdl
+VARIABLE variable1 : integer := 0;
+VARIABLE variable2 : std_logic := `1' ‘1';
+VARIABLE variable3 : bit := 1;
+```
+
+<h3>Señales</h3>
+
+Las señales representan conexiones física (cables) que interconectan componentes dentro de una arquitectura y entidades a través de un mapeo de puertos. Las señales guardan valores que pueden cambiar. Si no se inicializan las señales, por defecto se asigna el estado 'U'. Se declaran en sentencias concurrentes, pero antes del 'BEGIN'. La sintaxis es la siguiente:
+
+```vhdl
+SIGNAL signal1 : integer := 0;
+SIGNAL signal2 : std_logic := `1' ‘1';
+SIGNAL signal3 : bit := 1;
+```
+
+<h3>Sentencias concurrentes</h3>
+
+Las sentencias concurrentes se ejecutan de manera simultanea (paralelo), por lo que no tienen prioridades en la ejecución. 
+
+<h4>Procesos</h4>
+
+Los procesos se ejecutan en paralelo, sin embargo, el código dentro de cada proceso es ejecutado de manera secuencial
+
+<h4>Bloques</h4>
+
+<h4>when-else</h4>
+
+<h4>with-select</h4>
+
+
+
+<h3>Sentencias secuenciales</h3>
+
+<h4>wait</h4>
+
+<h4>Condicionales</h4>
+
+<h5>if else</h5>
+
+<h5>Case-when<h5>
+
+<h5>For-loop</h5>
+
+<h5>While</h5>
+
+<h5>Loop</h5>
+
+<h5>Exit</h5>
+
+<h5>Next</h5>
+
+<h5>Null</h5>
+
+
+
+
+
+<h3>Bibliotecas</h3>
+
+Las librerías o bibliotecas son códigos utilizados frecuentemente, las cuales pueden ser reutilizadas en todos los proyectos. La sintaxis es la siguiente:
+
+```vhdl
+LIBRARY library_name;
+USE library_name.package_name.package_parts;
+```
+
+ Hay tres librerías muy utilizadas en VHDL:
+
+1. IEEE: específica sistemas lógicos multinivel (indispensable) y proporciona tipos de datos estándarizados
+2. std: recurso de librería para ambiente de diseño de VHDL
+3. work: usado para guardar el proyecto y el archivo del programa .vhd 
+
+```vhdl
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.all;
+```
+<h3>Entidad</h3>
+
+La entidad es la estructura del bloque, en donde se declaran los puertos de entrada y salida. La sintaxis es la siguiente:
+
+```vhdl
+ENTITY entity_name IS
+    PORT(
+        port1_name : port_mode port_type;
+        port2_name : port_mode port_type;
+        ...
+        portn_name : port_mode port_type;
+    );
+END entity_name;
+```
 
 <div align="center">
 <img src="image-12.png" alt="Entidad compuerta AND" width="500"/>
@@ -144,10 +259,20 @@ ENTITY Gate_AND IS
 END Gate_AND;
 ```
 
-La arquitectura
+<h3>Arquitectura</h3>
+
+La arquitectura describe el comportamiento de la entidad. La sintaxis es la siguiente:
+
+```vhdl
+ARCHITECTURE architecture_name OF entity_name IS
+    declarations
+    BEGIN
+        code ...
+END architecture_name;
+```
 
 <div align="center">
-<img src="image-14.png" alt="Arquitectura compuerta AND" width="500"/>
+<img src="image-13.png" alt="Arquitectura compuerta AND" width="500"/>
 <br>
 <figcaption>Fuente: Autor</figcaption>
 </div>
@@ -167,9 +292,7 @@ concurrente
 
 
 
-Un código en VHDL se caracteriza por dos partes fundamentales: 1. Entidad y 2. Arquitectura. La entidad es la estructura del bloque y la arquitectura es el comportamiento de dicho bloque. La sintaxis de un código en VHDL está estructurado de la siguiente manera:
-
-
+Un código en VHDL se caracteriza por dos partes fundamentales: 1. Entidad y 2. Arquitectura. La sintaxis de un modelado en VHDL de un circuito digital está estructurado de la siguiente manera:
 
 ```vhdl
 LIBRARY library_name;
@@ -185,13 +308,15 @@ ENTITY entity_name IS
 END entity_name;
 
 ARCHITECTURE architecture_name OF entity_name IS
-    declarations
+    constants and signals declarations
     BEGIN
         code ...
 END architecture_name;
 ```
 
+<h3>Ejemplo 1</h3>
 
+Modelar a través de VHDL el comportamiento de una compuerta AND.
 
 ```vhdl
 LIBRARY IEEE;

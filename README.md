@@ -23,19 +23,19 @@ En esta clase se presenta la materia, en cuanto al contenido temático, los mét
 		<td>07/02/2025</td> <td>2</td> <td>1</td> <td>1</td> <td>Presentación de la materia</td>
 	</tr>
 	<tr>
-		<td>08/02/2025</td> <td>2</td> <td>2</td> <td>1</td> <td>Sistemas numéricos y algebra booleana</td>
+		<td>08/02/2025</td> <td>2</td> <td>2</td> <td>1</td> <td>Sistemas numéricos<br>Algebra booleana</td>
 	</tr>
 	<tr>
-		<td>14/02/2025</td> <td>2</td> <td>3</td> <td>2</td> <td>Introducción a FPGA (Cyclone IV) (manual de la tarjeta), VHDL (sintaxis, entidades, test bench) e instalación de Quartus y Modelsim</td>
+		<td>14/02/2025</td> <td>2</td> <td>3</td> <td>2</td> <td>Introducción a FPGA y a VHDL</td>
 	</tr>
 	<tr>
-		<td>15/02/2025</td> <td>2</td> <td>4</td> <td>2</td> <td>Lógica combinacional (sintesis, simulación y programación)</td>
+		<td>15/02/2025</td> <td>2</td> <td>4</td> <td>2</td> <td>Instalación de Quartus y Modelsim<br>Lógica combinacional (sintesis y simulación)</td>
 	</tr>
 	<tr>
-		<td>21/02/2025</td> <td>2</td> <td>5</td> <td>3</td> <td>Desarrollo y/o entrega de laboratorio</td>
+		<td>21/02/2025</td> <td>2</td> <td>5</td> <td>3</td> <td>Programación en la tarjeta</td>
 	</tr>
 	<tr>
-		<td>22/02/2025</td> <td>2</td> <td>6</td> <td>3</td> <td>Multiplexadores, memoria ROM y RAM</td>
+		<td>22/02/2025</td> <td>2</td> <td>6</td> <td>3</td> <td>Multiplexadores, Half Adder y Full Adder</td>
 	</tr>
 	<tr>
 		<td>28/02/2025</td> <td>2</td> <td>7</td> <td>4</td> <td>Desarrollo y/o entrega de laboratorio</td>
@@ -58,16 +58,16 @@ En esta clase se presenta la materia, en cuanto al contenido temático, los mét
 		<td>Fecha</td> <td>Horas</td> <td>Clase</td> <td>Semana</td> <td>Actividades</td>
 	</tr>
 	<tr>
-		<td>14/03/2025</td> <td>2</td> <td>11</td> <td>6</td> <td>Flip flops, latchs y socialización de proyecto</td>
+		<td>14/03/2025</td> <td>2</td> <td>11</td> <td>6</td> <td>memoria ROM y RAM y socialización de proyecto</td>
 	</tr>
 	<tr>
-		<td>15/03/2025</td> <td>2</td> <td>12</td> <td>6</td> <td>Lógica secuencial (sintesis y simulación)</td>
+		<td>15/03/2025</td> <td>2</td> <td>12</td> <td>6</td> <td>Flip flops, latchs</td>
 	</tr>
 	<tr>
-		<td>21/03/2025</td> <td>2</td> <td>13</td> <td>7</td> <td>Desarrollo y/o entrega de laboratorio</td>
+		<td>21/03/2025</td> <td>2</td> <td>13</td> <td>7</td> <td>Lógica secuencial (sintesis y simulación)</td>
 	</tr>
 		<tr>
-		<td>22/03/2025</td> <td>2</td> <td>14</td> <td>7</td> <td></td>
+		<td>22/03/2025</td> <td>2</td> <td>14</td> <td>7</td> <td>Desarrollo y/o entrega de laboratorio</td>
 	</tr>
 	<tr>
 		<td>28/03/2025</td> <td>2</td> <td>15</td> <td>8</td> <td>Desarrollo y/o entrega de laboratorio</td>
