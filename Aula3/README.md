@@ -201,20 +201,18 @@ Range son únicamente para vectores y retorna el rango del vector; por ejemplo: 
 
 <h3>Sentencias concurrentes</h3>
 
-Las sentencias concurrentes son únicamente para las señales y se ejecutan de manera simultanea (paralelo), por lo que no tienen prioridades en la ejecución.  
+Las sentencias concurrentes son únicamente para las señales y se ejecutan de manera asíncrona y simultanea (paralelo), por lo que no tienen prioridades en la ejecución. Estas sentencias modelan circuitos digitales de lógica combinacional (ej: compuertas lógicas).
 
-<h4>Bloques</h4>
+<h3>Procesos</h3>
 
-<h4>when-else</h4>
-
-La sintaxis es la siguiente:
+Los procesos se ejecutan en paralelo, sin embargo, el código dentro de cada proceso es ejecutado de manera secuencial. La sintaxis es la siguiente:
 
 ```vhdl
-signal5 <= signal1 WHEN condition1 ELSE
-           signal2 WHEN condition2 ELSE
-           signal3 WHEN condition3 ELSE
-           ...
-           signaln;
+PROCESS(lista sensitiva)
+    sentencias locales (constantes, variables y subprogramas)
+    BEGIN
+        sentencias secuenciales
+END PROCESS;
 ```
 
 <h4>with-select</h4>
@@ -231,11 +229,54 @@ signal5 <= signal1 WHEN value1,
 
 ```
 
+* Para evitar latchs se debe colocar la sentencia WHEN OTHERS para la última combinación de las señales de selección.
+
+<div align="center">
+<img src="image-15.png" alt="Multiplexador"/>
+<br>
+<figcaption>Fuente: https://fpgatutorial.com/vhdl-logical-operators-and-signal-assignments-for-combinatorial-logic/</figcaption>
+</div>
+
+```vhdl
+WITH addr SELECT
+Q <= A when "00",
+     B when "01",
+     C when "10",
+     D WHEN OTHERS;
+```
+
+<h4>when-else</h4>
+
+La sintaxis es la siguiente:
+
+```vhdl
+signal5 <= signal1 WHEN condition1 ELSE
+           signal2 WHEN condition2 ELSE
+           signal3 WHEN condition3 ELSE
+           ...
+           signaln;
+```
+
+* Para evitar un latch (no recomendable) se debe contemplar la última condición ELSE
+
+<div align="center">
+<img src="image-15.png" alt="Multiplexador"/>
+<br>
+<figcaption>Fuente: https://fpgatutorial.com/vhdl-logical-operators-and-signal-assignments-for-combinatorial-logic/</figcaption>
+</div>
+
+```VHDL
+Q <= A WHEN addr = "00" ELSE 
+     B WHEN addr = "01" ELSE
+     C WHEN addr = "10" ELSE
+     D;
+```
+
 <h3>Sentencias secuenciales</h3>
 
-Las sentencias secuenciales se ejecutan dentro de procesos funciones o procedimientos
+Las sentencias secuenciales se ejecutan dentro de procesos funciones o procedimientos. Estas sentencias modelan circuitos digitales de lógica secuencial (ej: flip-flops).
 
-<h5>if-else</h5>
+<h5>IF THEN</h5>
 
 La sintaxis es la siguiente:
 
@@ -251,6 +292,15 @@ ELSE
     sentencex;
 END IF;
 ```
+
+* Para evitar un latch (no recomendable) se debe contemplar la condición ELSE o definir un valor inicial antes del IF de la variable de salida
+
+```vhdl
+IF rising_edge(clock) THEN
+    q <= d;
+end if;
+```
+Revisar este ejemplo
 
 <h5>case-when</h5>
 
@@ -281,18 +331,6 @@ END LOOP;
 <h5>While</h5>
 
 <h5>Loop</h5>
-
-<h3>Procesos</h3>
-
-Los procesos se ejecutan en paralelo, sin embargo, el código dentro de cada proceso es ejecutado de manera secuencial. La sintaxis es la siguiente:
-
-```vhdl
-process_name: PROCESS(sensitive list)
-    constants, variables and subprograms local statements
-    BEGIN
-        sentencias secuenciales
-END PROCESS;
-```
 
 <h3>Procedimientos</h3>
 

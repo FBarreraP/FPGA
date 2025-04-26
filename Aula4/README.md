@@ -216,3 +216,11 @@ ARCHITECTURE blinking OF A3_1 IS
     out <= (s1 AND s2);
 END blinking;
 ```
+
+<h3>Ejercicio</h3>
+
+<div align="center">
+<img src="image-6.png" alt="Circuito combinacional"/>
+<br>
+<figcaption>Fuente: Autor</figcaption>
+</div>
