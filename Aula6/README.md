@@ -4,4 +4,10 @@ Esta clase consiste en aprender a programar en la tarjeta de desarrollo FPGA Cyc
 
 <h2></h2>
 
-Para conocer la identficación de los pines con los periféricos se debe visualizar el archivo "Development board pin information.xls"
+Después de haber compilado al 100% el proyecto en Quartus, se deben asignar los pines de la entidad del proyecto con los pines de la tarjeta de desarrollo en la opción Assignments>Pin Planner. Para esto, es indispensable conocer la identificación de los periféricos en los pines del FPGA, la cual se encuentra en el archivo "Development board schematic diagram V2.1"
+
+<div align="center">
+<img src="image.png" alt="Asignación de pines"/>
+<br>
+<figcaption>Fuente: Autor</figcaption>
+</div>

@@ -26,16 +26,16 @@ En esta clase se presenta la materia, en cuanto al contenido temático, los mét
 		<td>08/02/2025</td> <td>2</td> <td>2</td> <td>1</td> <td>Sistemas numéricos<br>Algebra booleana</td>
 	</tr>
 	<tr>
-		<td>14/02/2025</td> <td>2</td> <td>3</td> <td>2</td> <td>Introducción a FPGA y a VHDL</td>
+		<td>14/02/2025</td> <td>2</td> <td>3</td> <td>2</td> <td>Introducción a FPGA</td>
 	</tr>
 	<tr>
-		<td>15/02/2025</td> <td>2</td> <td>4</td> <td>2</td> <td>Instalación de Quartus y Modelsim<br>Lógica combinacional (sintesis y simulación)</td>
+		<td>15/02/2025</td> <td>2</td> <td>4</td> <td>2</td> <td>Introducción a VHDL (sintesis y simulación)</td>
 	</tr>
 	<tr>
-		<td>21/02/2025</td> <td>2</td> <td>5</td> <td>3</td> <td>Programación en la tarjeta</td>
+		<td>21/02/2025</td> <td>2</td> <td>5</td> <td>3</td> <td>Instalación de Quartus y Modelsim<br>Lógica combinacional</td>
 	</tr>
 	<tr>
-		<td>22/02/2025</td> <td>2</td> <td>6</td> <td>3</td> <td>Multiplexadores, Half Adder y Full Adder</td>
+		<td>22/02/2025</td> <td>2</td> <td>6</td> <td>3</td> <td>Programación en la tarjeta</td>
 	</tr>
 	<tr>
 		<td>28/02/2025</td> <td>2</td> <td>7</td> <td>4</td> <td>Desarrollo y/o entrega de laboratorio</td>
@@ -58,7 +58,7 @@ En esta clase se presenta la materia, en cuanto al contenido temático, los mét
 		<td>Fecha</td> <td>Horas</td> <td>Clase</td> <td>Semana</td> <td>Actividades</td>
 	</tr>
 	<tr>
-		<td>14/03/2025</td> <td>2</td> <td>11</td> <td>6</td> <td>memoria ROM y RAM y socialización de proyecto</td>
+		<td>14/03/2025</td> <td>2</td> <td>11</td> <td>6</td> <td>Multiplexadores, Half Adder y Full Adder y socialización de proyecto</td>
 	</tr>
 	<tr>
 		<td>15/03/2025</td> <td>2</td> <td>12</td> <td>6</td> <td>Flip flops, latchs</td>
@@ -73,7 +73,7 @@ En esta clase se presenta la materia, en cuanto al contenido temático, los mét
 		<td>28/03/2025</td> <td>2</td> <td>15</td> <td>8</td> <td>Desarrollo y/o entrega de laboratorio</td>
 	</tr>
 	<tr>
-		<td>29/03/2025</td> <td>2</td> <td>16</td> <td>8</td> <td></td>
+		<td>29/03/2025</td> <td>2</td> <td>16</td> <td>8</td> <td>memoria ROM y RAM</td>
 	</tr>
 	<tr>
 		<td>04/04/2025</td> <td>2</td> <td>17</td> <td>9</td> <td>Desarrollo y/o entrega de laboratorio</td>
@@ -108,7 +108,7 @@ En esta clase se presenta la materia, en cuanto al contenido temático, los mét
 		<td>02/05/2025</td> <td>2</td> <td>23</td> <td>12</td> <td>Desarrollo y/o entrega de laboratorio y/o proyecto</td>
 	</tr>
 	<tr>
-		<td>03/05/2025</td> <td>2</td> <td>24</td> <td>12</td> <td></td>
+		<td>03/05/2025</td> <td>2</td> <td>24</td> <td>12</td> <td>SoC (Nios II)</td>
 	</tr>
 	<tr>
 		<td>09/05/2025</td> <td>2</td> <td>25</td> <td>13</td> <td></td>
