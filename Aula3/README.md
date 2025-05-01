@@ -88,7 +88,7 @@ La documentación de esta tarjeta de desarrollo se encuentra <a href="https://fp
 - Regulador de voltaje 1117 a 3.3V para salidas de voltaje a 3.3V
 - Regulador de voltaje 1117 a 1.2V para el voltaje de alimentación del FPGA
 - Regulador de voltaje 1117 a 2.5V para salida de voltaje PLL
-- Alimentación de 5V DC por socket y por USB (ver PDF Board Manual)
+- Alimentación de 5V DC a 1A (mínimo) por medio de un conector jack y por USB (ver PDF Board Manual)
 - Led indicador de alimentación
 - Conexión JTAG para transferir el programa desde Quartus al FPGA a través de un archivo .SOF (alta velocidad de transferencia)
 - Conexión AS para transferir el programa desde Quartus al FPGA a través de un archivo .POF
