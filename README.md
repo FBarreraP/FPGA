@@ -29,10 +29,10 @@ En esta clase se presenta la materia, en cuanto al contenido temático, los mét
 		<td>14/02/2025</td> <td>2</td> <td>3</td> <td>2</td> <td>Introducción a FPGA</td>
 	</tr>
 	<tr>
-		<td>15/02/2025</td> <td>2</td> <td>4</td> <td>2</td> <td>Introducción a VHDL (sintesis y simulación)</td>
+		<td>15/02/2025</td> <td>2</td> <td>4</td> <td>2</td> <td>Introducción a VHDL</td>
 	</tr>
 	<tr>
-		<td>21/02/2025</td> <td>2</td> <td>5</td> <td>3</td> <td>Instalación de Quartus y Modelsim<br>Lógica combinacional</td>
+		<td>21/02/2025</td> <td>2</td> <td>5</td> <td>3</td> <td>Instalación de Quartus y Modelsim <br>Lógica combinacional (sintesis y simulación)</td>
 	</tr>
 	<tr>
 		<td>22/02/2025</td> <td>2</td> <td>6</td> <td>3</td> <td>Programación en la tarjeta</td>
