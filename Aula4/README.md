@@ -1,226 +1,449 @@
-Cómo diseñar módulos básicos en HDL.
-
-Simulación y verificación: Pruebas de diseño.
-
-Programación de la FPGA con herramientas específicas.
-
 <h1>Aula 4</h1>
 
 Esta clase consiste en 
 
-<h2>Quartus y ModelSim</h2>
+<h2>VHDL</h2>
 
-Descargar Intel® Quartus® Prime Lite Edition v18.1 para Windows <a href="https://www.intel.com/content/www/us/en/collections/products/fpga/software/downloads.html">aquí</a> y posteriormente descargar los siguientes <i>softwares</i>:
+VHDL es un lenguaje de descripción de hardware a través del cual se describe (modela) la estructura y el comportamiento de circuitos digitales ejecutados en paralelo e impulsados por eventos (clock). VHDL corresponde a la mezcla entre VHSIC (Very High Speed Integrated Circuit) y HDL (Hardware Description Language).
 
-1. Intel® Cyclone® IV Device Support
-2. ModelSim-Intel® FPGA Edition (includes Starter Edition)
-3. Intel® Quartus® Prime (includes Nios® II EDS)
+<h3>Tipos de datos</h3>
 
-Posteriormente, ejecutar el instalador de Intel® Quartus® Prime donde el asistente de instalación reconoce el dispositivo (Cyclone IV) y el simulador (ModelSim) para ser instalados al mismo tiempo.
+time
 
-El proyecto puede tener un nombre diferente a la entidad de más alto nivel
+<h4>Paquete standard de la biblioteca std</h4>
+- bit: representa un estado lógico de '0' o '1' y se pueden realizar operaciones lógicas y de comparación.
+- bit_vector: es un vector de bits (ej: (m to n); (n downto m))
+- boolean: representa false o true
+- positive: es un integer = 1
+- natural: es un integer = 0
+- integer: representa un valor entero en el rango de $-2^{32}$ a $2^{32}-1$ y se pueden realizar operaciones aritméticas y de comparación.
 
-![alt text](image.png)
-!
+COMPLEMENTAR INTEGER RANGE n TO m ó range m downto n
 
-En la última parte de la creación del proyecto se debe seleccionar ModelSim-Altera y VHDL en la opción Simulation
+<h4>paquete std_logic_1164 de la biblioteca IEEE</h4>
+- std_logic: representa diferentes estados lógicos:'U', 'X', '0', '1', 'Z', 'W', 'L', 'H', '-'.
 
-![alt text](image-2.png)
+COLOCAR LOS SIGNIFICADOS DE LOS ESTADOS LÓGICOS
 
-Después de crear un proyecto nuevo, se debe configurar el ejecutable de la herramienta de simulación en ModelSim-Altera en la opciones > EDA Tool Options
+- std_logic_vector: es vector de bits en el que cada bit representa un estado lógico (ej: (m to n); (n downto m)).
 
-![alt text](image-1.png)
+<h4>Paquete numeric_std de la biblioteca IEEE</h4>
+signed y unsigned
 
-Posteriormente, se debe crear un archivo VHDL File, en el cual el nombre de la entidad debe tener el mismo nombre del archivo .vhd y se debe compilar en la opción Start Analysis & Synthesis para verificar que el código no tenga errores. 
-
-```vhdl
-LIBRARY IEEE;
-USE IEEE.STD_LOGIC_1164.all;
-
-ENTITY GATE_AND IS
-    PORT(a,b : IN std_logic;
-          c : OUT std_logic
-    );	  
-END GATE_AND;
-
-ARCHITECTURE GATE_AND_arch OF GATE_AND IS
-    BEGIN
-    c <= (a AND b);
-END GATE_AND_arch;
-```
-
-Dar click en la opción Start Compilation para generar la plantilla test bench (ej: GATE_AND.vht), la cual se encontrará en la carpeta simulation dentro de la ruta del proyecto, dicha plantilla se genera en la opción Processing > Start > Start Test Bench Template Writer. Posteriormente se debe crear una copia de dicho archivo y pegarla en la ruta inicial del proyecto, cambiarle el nombre (ej: GATE_AND_tb.vht) y finalmente agregar ese archivo en el proyecto en Quartus, para editarlo con respecto al nombre de la entidad y de la arquitectura (ej: GATE_AND_tb y GATE_AND_tb_arch), los valores de las señales tanto iniciales como durante el proceso always y los tiempos de espera de las señales (delays).
-
-```vhdl
--- Generated on "04/03/2025 21:07:16"
-                                                            
--- Vhdl Test Bench template for design  :  GATE_AND
--- 
--- Simulation tool : ModelSim-Altera (VHDL)
--- 
-
-LIBRARY ieee;                                               
-USE ieee.std_logic_1164.all;                                
-
-ENTITY GATE_AND_vhd_tst IS
-END GATE_AND_vhd_tst;
-
-ARCHITECTURE GATE_AND_arch OF GATE_AND_vhd_tst IS
-	-- constants                                                 
-	-- signals                                                   
-	SIGNAL a : STD_LOGIC := '0';
-	SIGNAL b : STD_LOGIC := '0';
-	SIGNAL c : STD_LOGIC := '0';
-	
-	COMPONENT GATE_AND
-		PORT (
-			a : IN STD_LOGIC;
-			b : IN STD_LOGIC;
-			c : BUFFER STD_LOGIC
-		);
-	END COMPONENT;
-	
-	BEGIN
-	
-	i1 : GATE_AND
-	PORT MAP (
--- list connections between master ports and signals
-		a => a,
-		b => b,
-		c => c
-	);
-		
-	init : PROCESS                                               
-	-- variable declarations                                     
-	BEGIN                                                        
-			  -- code that executes only once                      
-	WAIT;                                                       
-	END PROCESS init;
-	
-	always : PROCESS                                              
-	-- optional sensitivity list                                  
-	-- (        )                                                 
-	-- variable declarations                                      
-	BEGIN                                                         
-			  -- code executes for every event on sensitivity list  
-	a <= '0'; b <= '0';
-	WAIT FOR 10ns; 
-	a <= '0'; b <= '1';
-	WAIT FOR 10ns;   
-	a <= '1'; b <= '0';
-	WAIT FOR 10ns; 
-	a <= '1'; b <= '1';
-	WAIT FOR 10ns;      
-
-	END PROCESS always; 
-	
-END GATE_AND_arch;
-```
-
-Agregar el archivo test bench en las configuraciones de simulación, en la opción Compile test bench 
-
-![alt text](image-3.png)
-
-Dar click en la opción Start Compilation para compilar todo el proyecto y ejecutar la simulación en ModelSim en la opción Tools > Run Simulation Tool > RTL Simulation
-
-<h3>Crear bloques</h3>
-
-Para crear un bloque que represente un archivo VHDL en Quartus, primero se debe compilar para garantizar que no hayan errores en el código en la opción Start Analysis & Synthesis, posteriormente, abrir el archivo (ej: GATE_AND.vhd) y seleccionar la opción File > Create/Update > Create Symbol Files for Current File, la cual genera un archivo de símbolo (ej: GATE_AND.bsf) y abrirlo en Quartus.
-
-![alt text](image-4.png)
-
-<h3>Conectar bloques</h3>
-
-Crear un archivo "Block Diagram/Schematic File" (ej: GATES_AND_blocks.bdf) e insertar un simbolo dando click derecho y seleccionar la opción Insert > Symbol, posteriormente seleccionar en las librerías del proyecto el bloque generado anteriormente (ej: GATE_AND.bsf) y finalmente, conectar los componentes y las entradas y salidas en el diseño esquemático.
-
-![alt text](image-5.png)
-
-Del cual se genera el código en VHDL en la opción File > Create/Update > Create HDL Design File from Current File
-
-```vhdl
--- PROGRAM		"Quartus Prime"
--- VERSION		"Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition"
--- CREATED		"Thu Apr 03 22:18:06 2025"
-
-LIBRARY ieee;
-USE ieee.std_logic_1164.all; 
-
-LIBRARY work;
-
-ENTITY GATE_AND_blocks IS 
-	PORT
-	(
-		in1 :  IN  STD_LOGIC;
-		in2 :  IN  STD_LOGIC;
-		in3 :  IN  STD_LOGIC;
-		in4 :  IN  STD_LOGIC;
-		out1 :  OUT  STD_LOGIC
-	);
-END GATE_AND_blocks;
-
-ARCHITECTURE bdf_type OF GATE_AND_blocks IS 
-
-COMPONENT gate_and
-	PORT(a : IN STD_LOGIC;
-		 b : IN STD_LOGIC;
-		 c : OUT STD_LOGIC
-	);
-END COMPONENT;
-
-SIGNAL	SYNTHESIZED_WIRE_0 :  STD_LOGIC;
-SIGNAL	SYNTHESIZED_WIRE_1 :  STD_LOGIC;
-
-
-BEGIN 
-
-
-
-b2v_inst : gate_and
-PORT MAP(a => in1,
-		 b => in2,
-		 c => SYNTHESIZED_WIRE_0);
-
-
-b2v_inst1 : gate_and
-PORT MAP(a => in3,
-		 b => in4,
-		 c => SYNTHESIZED_WIRE_1);
-
-
-b2v_inst2 : gate_and
-PORT MAP(a => SYNTHESIZED_WIRE_0,
-		 b => SYNTHESIZED_WIRE_1,
-		 c => out1);
-
-
-END bdf_type;
-```
-
-A lo que sería igual a:
-
-```vhdl
-LIBRARY IEEE;
-USE IEEE.STD_LOGIC_1164.all;
-
-ENTITY A3_1 IS
-    PORT(in1,in2,in3,in4 : IN std_logic;
-          out1 : OUT std_logic
-    );	  
-END A3_1;
-
-ARCHITECTURE blinking OF A3_1 IS
-    SIGNAL s1, s2 
-    BEGIN
-    s1 <= (in1 AND in2);
-    s2 <= (in3 AND in4);
-    out <= (s1 AND s2);
-END blinking;
-```
-
-<h3>Ejercicio</h3>
+<h4>Paquete fixed_pkg y float_pkg de la biblioteca </h4>
+punto fijo y flotante
 
 <div align="center">
-<img src="image-6.png" alt="Circuito combinacional"/>
+<img src="image-10.png" alt="Conversión entre tipos de datos VHDL"/>
+<br>
+<figcaption>Fuente: https://blog.csdn.net/weixin_30723433/article/details/95658653</figcaption>
+</div>
+
+<h3>Operaciones</h3>
+
+<div align="center">
+<img src="image-14.png" alt="Operaciones con diferentes tipos de datos"/>
+<br>
+<figcaption>Fuente: https://www.geocities.ws/curso_tecnologia_electronica/VHDL/STX-VHDL.pdf</figcaption>
+</div>
+
+<h3>Asignación</h3>
+
+La asignación de valores para constantes y variables es realizada a través del simbolo ':=', las cuales ocurren inmediatamente, independientemente del tiempo, y para puertos de entrada, salida y bidireccionales, al igual que para señales, la asignación es hecha por medio del simbolo '<=', las cuales ocurren en el siguiente cambio de tiempo (sentencia WAIT o fin de sentencia concurrente).
+
+* La inicialización de constantes, variables y señales se realiza a través del simbolo ':='.
+
+<h3>Constantes</h3>
+
+Las constantes mantienen el valor inicializado del tipo de dato declarado durante toda la ejecución del código. Se declaran dentro de la arquitectura, pero antes del 'BEGIN'. La sintaxis es la siguiente:
+
+```vhdl
+CONSTANT constante1 : integer := 4;
+CONSTANT constante2 : std_logic := '1';
+CONSTANT constante3 : time := 10 ns;
+```
+
+<h3>Variables</h3>
+
+Las variables guardan un valor del tipo de dato declarado y pueden ser modificadas a lo largo de la ejecución del código. Si no se inicializa, toma por defecto el menor valor del tipo de dato declarado. Se declaran dentro de los procesos o subprogramas, aunque con el comando SHARED pueden ser compatidas dentro de toda la arquitectura (no recomendable), pero antes del 'BEGIN'. La sintaxis es la siguiente:
+
+```vhdl
+VARIABLE variable1 : integer := 0;
+VARIABLE variable2 : std_logic := '1';
+VARIABLE variable3 : bit := 1;
+```
+
+<h3>Señales</h3>
+
+Las señales representan conexiones física (cables) que interconectan componentes dentro de una arquitectura y entidades a través de un mapeo de puertos. Las señales guardan valores que pueden cambiar. Si no se inicializan las señales, por defecto se asigna el estado 'U'. Se declaran en sentencias concurrentes, pero antes del 'BEGIN'. La sintaxis es la siguiente:
+
+```vhdl
+SIGNAL signal1 : integer := 0;
+SIGNAL signal2 : std_logic := '1';
+SIGNAL signal3 : bit := 1;
+SIGNAL signal4 : std_logic_vector(3 to 0) := "0000";
+```
+
+<h3>Atributos</h3>
+
+Los atributos son 
+
+<h4>Event</h4>
+
+Los eventos son únicamente de señales y retornan 'true' en el momento que se cumple la condición de la señal; por ejemplo: event(clk='1' and clk'event), retorna 'true' cuando hay un flanco de subida en la señal clk.
+
+<h4>Range</h4>
+
+Range son únicamente para vectores y retorna el rango del vector; por ejemplo: signal wire1: std_logic_vector (7 downto 0), en 'for i in wire1 range loop' es igual a 'for i in 7 downto 0 loop'.
+
+<h3>Sentencias concurrentes</h3>
+
+Las sentencias concurrentes son únicamente para las señales y se ejecutan de manera asíncrona y simultanea (paralelo), por lo que no tienen prioridades en la ejecución. Estas sentencias modelan circuitos digitales de lógica combinacional (ej: compuertas lógicas).
+
+<h3>Procesos</h3>
+
+Los procesos se ejecutan en paralelo, sin embargo, el código dentro de cada proceso es ejecutado de manera secuencial. La sintaxis es la siguiente:
+
+```vhdl
+PROCESS(lista sensitiva)
+	sentencias locales (constantes, variables y subprogramas)
+	BEGIN
+		sentencias secuenciales
+END PROCESS;
+```
+
+<h4>with-select</h4>
+
+La sintaxis es la siguiente:
+
+```vhdl
+WITH signal_condition SELECT
+signal5 <= signal1 WHEN value1,
+		   signal2 WHEN value2,
+		   signal3 WHEN value3,
+		   ...
+		   signaln WHEN OTHERS;
+
+```
+
+* Para evitar latchs se debe colocar la sentencia WHEN OTHERS para la última combinación de las señales de selección.
+
+<div align="center">
+<img src="image-15.png" alt="Multiplexador"/>
+<br>
+<figcaption>Fuente: https://fpgatutorial.com/vhdl-logical-operators-and-signal-assignments-for-combinatorial-logic/</figcaption>
+</div>
+
+```vhdl
+WITH addr SELECT
+Q <= A when "00",
+	 B when "01",
+	 C when "10",
+	 D WHEN OTHERS;
+```
+
+<h4>when-else</h4>
+
+La sintaxis es la siguiente:
+
+```vhdl
+signal5 <= signal1 WHEN condition1 ELSE
+		   signal2 WHEN condition2 ELSE
+		   signal3 WHEN condition3 ELSE
+		   ...
+		   signaln;
+```
+
+* Para evitar un latch (no recomendable) se debe contemplar la última condición ELSE
+
+<div align="center">
+<img src="image-15.png" alt="Multiplexador"/>
+<br>
+<figcaption>Fuente: https://fpgatutorial.com/vhdl-logical-operators-and-signal-assignments-for-combinatorial-logic/</figcaption>
+</div>
+
+```VHDL
+Q <= A WHEN addr = "00" ELSE 
+	 B WHEN addr = "01" ELSE
+	 C WHEN addr = "10" ELSE
+	 D;
+```
+
+<h3>Sentencias secuenciales</h3>
+
+Las sentencias secuenciales se ejecutan dentro de procesos funciones o procedimientos. Estas sentencias modelan circuitos digitales de lógica secuencial (ej: flip-flops).
+
+<h5>IF THEN</h5>
+
+La sintaxis es la siguiente:
+
+```vhdl
+IF condition1 THEN
+	sentence1;
+ELSIF condition2 THEN
+	sentence2;
+...
+ELSIF conditionn THEN
+	sentencen;
+ELSE
+	sentencex;
+END IF;
+```
+
+* Para evitar un latch (no recomendable) se debe contemplar la condición ELSE o definir un valor inicial antes del IF de la variable de salida
+
+```vhdl
+IF rising_edge(clock) THEN
+	q <= d;
+end if;
+```
+Revisar este ejemplo
+
+<h5>case-when</h5>
+
+La sintaxis es la siguiente:
+
+```vhdl
+CASE expresion IS
+	WHEN value1 => sentence1;
+	WHEN value2 => sentence2;
+	WHEN value3 => sentence3;
+	...
+	WHEN valuen => sentencen;
+END CASE;
+```
+
+<h5>for-loop</h5>
+
+La sintaxis es la siguiente:
+
+```vhdl
+FOR index IN range LOOP
+	sentences
+END LOOP;
+```
+
+* El índice de los bucles 'for' no se debe declarar
+
+<h5>While</h5>
+
+<h5>Loop</h5>
+
+<h3>Procedimientos</h3>
+
+La sintaxis es la siguiente:
+
+```vhdl
+PROCEDURE procedure_name (parameters) IS
+	statements
+	BEGIN
+		sentencias secuenciales
+END PROCEDURE;
+``` 
+
+<h3>Funciones</h3>
+
+La sintaxis es la siguiente:
+
+```vhdl
+FUNCTION nombre_funcion (parámetros) RETURN tipo IS
+	declaraciones
+	BEGIN
+		sentencias secuenciales
+		RETURN valor;
+END FUNCTION;
+```
+
+<h3>Sentencias estructurales</h3>
+
+<h4>COMPONENT</h4>
+
+Se declara dentro de la arquitectura, pero antes del 'BEGIN', sin embargo, el mapeamiento del componente se realiza después del 'BEGIN'. La sintaxis es la siguiente:
+
+```vhdl
+COMPONENT nombre_componente
+	PORT(
+		señal1 : modo tipo;
+		señal2 : modo tipo;
+		señal3 : modo tipo;
+		...
+		señalN : modo tipo;
+	)
+END COMPONENT;
+BEGIN 
+	nombre_copia_componente : nombre_componente
+	PORT MAP(
+		puerto1 => señal1,
+		puerto2 => señal2,
+		puerto3 => señal3,
+		...
+		puertoN => señalN
+	);
+```
+
+<h3>Sentencias de espera</h3>
+
+<h4>AFTER</h4>
+
+Se puede ejecutar en sentencias concurrentes o secuenciales. La sintaxis es la siguiente:
+
+```vhdl
+señal <= valor1 AFTER tiempo1 ns,
+		 valor2 AFTER tiempo2 ns,
+		 valor3 AFTER tiempo3 ns,
+		 ...
+		 valorN AFTER tiempoN ns,
+```
+
+<h4>WAIT</h4>
+
+Se puede ejecutar únicamente en sentencias secuenciales. La sintaxis es la siguiente:
+
+```vhdl
+WAIT FOR tiempo ns;
+WAIT UNTIL condición;
+WAIT ON lista de sensibilidad;
+```
+
+<h5>Exit</h5>
+
+<h5>Next</h5>
+
+<h5>Null</h5>
+
+
+
+
+
+<h3>Bibliotecas</h3>
+
+Las librerías o bibliotecas son códigos utilizados frecuentemente, las cuales pueden ser reutilizadas en todos los proyectos. La sintaxis es la siguiente:
+
+```vhdl
+LIBRARY library_name;
+USE library_name.package_name.package_parts;
+```
+
+ Hay tres librerías muy utilizadas en VHDL:
+
+1. IEEE: específica sistemas lógicos multinivel (indispensable) y proporciona tipos de datos estándarizados
+2. std: recurso de librería para ambiente de diseño de VHDL
+3. work: usado para guardar el proyecto y el archivo del programa .vhd 
+
+```vhdl
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.all;
+```
+<h3>Entidad</h3>
+
+La entidad es la estructura del bloque, en donde se declaran los puertos de entrada y salida. La sintaxis es la siguiente:
+
+```vhdl
+ENTITY entity_name IS
+	PORT(
+		port1_name : port_mode port_type;
+		port2_name : port_mode port_type;
+		...
+		portn_name : port_mode port_type;
+	);
+END entity_name;
+```
+
+<div align="center">
+<img src="image-12.png" alt="Entidad compuerta AND" width="500"/>
 <br>
 <figcaption>Fuente: Autor</figcaption>
 </div>
+
+```vhdl
+ENTITY Gate_AND IS
+	PORT(a,b : IN std_logic;
+		c : OUT std_logic
+	);
+END Gate_AND;
+```
+
+<h3>Arquitectura</h3>
+
+La arquitectura describe el comportamiento de la entidad. La sintaxis es la siguiente:
+
+```vhdl
+ARCHITECTURE architecture_name OF entity_name IS
+	constants and signals global statements
+	BEGIN
+		code ...
+END architecture_name;
+```
+
+<div align="center">
+<img src="image-13.png" alt="Arquitectura compuerta AND" width="500"/>
+<br>
+<figcaption>Fuente: Autor</figcaption>
+</div>
+
+```vhdl
+ARCHITECTURE arch_Gate_AND OF Gate_AND IS
+	BEGIN
+		c <= a AND b;
+END arch_Gate_AND;
+```
+
+
+
+behavioral
+
+
+
+Un código en VHDL se caracteriza por dos partes fundamentales: 1. Entidad y 2. Arquitectura. La sintaxis de un modelado general en VHDL de un circuito digital está estructurado de la siguiente manera:
+
+```vhdl
+LIBRARY library_name;
+USE library_name.package_name.package_parts;
+
+ENTITY entity_name IS
+	PORT(
+		port1_name : port_mode port_type;
+		port2_name : port_mode port_type;
+		...
+		portn_name : port_mode port_type;
+	);
+END entity_name;
+
+ARCHITECTURE architecture_name OF entity_name IS
+	constants, signals and subprograms global statements
+	BEGIN
+		sentencias concurrentes
+		PROCESS(sensitive list)
+			constants, variables and subprograms local statements
+			BEGIN
+				sentencias secuenciales
+		END PROCESS;        
+END architecture_name;
+```
+
+* Las señales son globales de la arquitectura, las variables son locales de cada proceso, las constantes y los subprogramas pueden ser globales o locales, dependiendo donde se declaren
+
+<h3>Ejemplo 1</h3>
+
+Modelar a través de VHDL el comportamiento de una compuerta AND.
+
+```vhdl
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.all;
+
+ENTITY Gate_AND IS
+	PORT(a,b : IN std_logic;
+		c : OUT std_logic
+	);
+END Gate_AND;
+
+ARCHITECTURE arch_Gate_AND OF Gate_AND IS
+	BEGIN
+		c <= a AND b;
+END arch_Gate_AND;
+```
+
+<h2>Test bench</h2>
+
+El Test bench es utilizado para realizar la simulación RTL en simuladores como ModelSim y así observar, depurar y analizar el comportamiento de los puertos y de las señales internas del programa en VHDL.
+
