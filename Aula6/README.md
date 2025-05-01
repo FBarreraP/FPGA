@@ -50,7 +50,7 @@ Como buena prática, antes de desconectar físicamente el USB del programador, s
 
 Si se desconecta la alimentación y se vuelve a conectar en la tarjeta de desarrollo, es decir, si se apaga y se enciende la tarjeta de desarrollo, la programación realizada anteriormente se pierde, por tanto se deben seguir estos pasos cada vez que se desee programar para garantizar que el programa quedará guardado en la memoria ROM del FPGA:
 
-1.
+1. 
 2.
 
 
