@@ -6,6 +6,9 @@ Esta clase consiste en
 
 VHDL es un lenguaje de descripción de hardware a través del cual se describe (modela) la estructura y el comportamiento de circuitos digitales ejecutados en paralelo e impulsados por eventos (clock). VHDL corresponde a la mezcla entre VHSIC (Very High Speed Integrated Circuit) y HDL (Hardware Description Language).
 
+> [!IMPORTANT]
+>En VHDL, las palabras no distiguen entre las minusculas y mayusculas
+
 <h3>Tipos de datos</h3>
 
 time

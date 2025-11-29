@@ -25,7 +25,10 @@ Después de crear un proyecto nuevo, se debe configurar el ejecutable de la herr
 
 ![alt text](image-1.png)
 
-Posteriormente, se debe crear un archivo VHDL File, en el cual el nombre de la entidad debe tener el mismo nombre del archivo .vhd y se debe compilar en la opción Start Analysis & Synthesis para verificar que el código no tenga errores. 
+Posteriormente, se debe crear un archivo VHDL File y se debe compilar en la opción Start Analysis & Synthesis para verificar que el código no tenga errores. 
+
+> [!IMPORTANT]
+> El nombre de la entidad debe tener el mismo nombre del archivo .vhd o .vht
 
 ```vhdl
 LIBRARY IEEE;
