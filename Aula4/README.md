@@ -13,7 +13,7 @@ VHDL es un lenguaje de descripción de hardware a través del cual se describe (
 
 En VHDL existen diferentes tipos de datos para almacenar bits, números enteros, punto fijo y punto flotante, que pueden ser utilizados como puertos de entrada/salida, señales o constantes.
 
-<h4>Paquete standard de la biblioteca std</h4>
+<h4>1. Paquete standard de la biblioteca std</h4>
 
 Para utilizar el paquete estándar de VHDL no hay que importar ninguna librería.
 
@@ -70,10 +70,10 @@ t1 : time := 10 ns;
 ```
 
 > [!NOTE]
-> Un número entero con signo de n bits es representado desde $\frac{-2^{n}}{2}$ a $\frac{2^{n}}{2}-1$
+> Un número entero con signo de n bits es representado desde $\frac{-2^{n}}{2}$ a $\frac{2^{n}}{2}-1$ \
 > Un número entero sin signo de n bits es representado desde $0 a $2^{n}-1$
 
-<h4>paquete std_logic_1164 de la biblioteca IEEE</h4>
+<h4>2. paquete std_logic_1164 de la biblioteca IEEE</h4>
 - std_logic: representa diferentes estados lógicos:'U', 'X', '0', '1', 'Z', 'W', 'L', 'H', '-'.
 
 COLOCAR LOS SIGNIFICADOS DE LOS ESTADOS LÓGICOS
