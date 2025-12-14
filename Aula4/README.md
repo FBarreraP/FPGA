@@ -1,25 +1,80 @@
 <h1>Aula 4</h1>
 
-Esta clase consiste en 
+Esta clase consiste en realizar una introducción a VHDL en cuanto a los tipos de datos, los tipos de sentencias; además de presentar la entidad y la arquitectura de circuitos digitales.
 
 <h2>VHDL</h2>
 
-VHDL es un lenguaje de descripción de hardware a través del cual se describe (modela) la estructura y el comportamiento de circuitos digitales ejecutados en paralelo e impulsados por eventos (clock). VHDL corresponde a la mezcla entre VHSIC (Very High Speed Integrated Circuit) y HDL (Hardware Description Language).
+VHDL es un lenguaje de descripción de hardware a través del cual se describe (modela) la estructura y el comportamiento de circuitos digitales ejecutados en paralelo e impulsados por eventos o interrupciones (ej: clock, entradas digitales, etc). VHDL corresponde a la mezcla entre VHSIC (Very High Speed Integrated Circuit) y HDL (Hardware Description Language).
 
 > [!IMPORTANT]
->En VHDL, las palabras no distiguen entre las minusculas y mayusculas
+>En VHDL no se distigue entre las minusculas y mayusculas en las palabras.
 
 <h3>Tipos de datos</h3>
 
-time
+En VHDL existen diferentes tipos de datos para almacenar bits, números enteros, punto fijo y punto flotante, que pueden ser utilizados como puertos de entrada/salida, señales o constantes.
 
 <h4>Paquete standard de la biblioteca std</h4>
-- bit: representa un estado lógico de '0' o '1' y se pueden realizar operaciones lógicas y de comparación.
-- bit_vector: es un vector de bits (ej: (m to n); (n downto m))
-- boolean: representa false o true
-- positive: es un integer = 1
-- natural: es un integer = 0
-- integer: representa un valor entero en el rango de $-2^{32}$ a $2^{32}-1$ y se pueden realizar operaciones aritméticas y de comparación.
+
+Para utilizar el paquete estándar de VHDL no hay que importar ninguna librería.
+
+<h5>boolean: representa false o true</h5>
+
+```vhdl
+flag : boolean := false;
+```
+
+<h5>bit: representa un estado lógico de '0' o '1' y se pueden realizar operaciones lógicas y de comparación.</h5>
+
+```vhdl
+a  : bit := '1';
+b  : bit := '0';
+```
+
+<h5>bit_vector: es un vector de bits (ej: range 0 to 3 o range 3 downto 0) que no tiene representación numérica.</h5>
+
+```vhdl
+a : bit_vector(3 downto 0) := "1010";
+```
+
+<h5>integer: representa un valor entero con signo en el rango de 32 bits por defecto, con el cual se pueden realizar operaciones aritméticas y de comparación.</h5>
+
+> [!IMPORTANT]
+>El rango de integer es $-2^{32}$ a $2^{32}-1$. Sin embargo, es recomendable parametrizar el tamaño de números a utilizar (ej: range 0 to 255 o range 255 downto 0).
+
+```vhdl
+a : integer := 532;
+b : integer := -532;
+contador : integer range 0 to 100;
+```
+
+Asimismo, existen dos subtipos de datos derivados de integer y definidos por VHDL, los cuales son natural y positive.
+
+<h5>natural: integer para almacenar números mayores o iguales que cero.</h5>
+
+```vhdl
+a : natural := 0;
+b : natural := 1;
+```
+
+<h5>natural: integer para almacenar números mayores que cero.</h5>
+
+```vhdl
+a : positive := 4;
+b : positive := 1;
+```
+
+<h5>time: utilizado para delays.</h5>
+
+```vhdl
+t1 : time := 10 ns;
+```
+
+> [!NOTE]
+>Un número entero con signo de n bits es representado desde $-2^{n}/2$ a $2^{n}/2-1$
+>Un número entero sin signo de n bits es representado desde $0 a $2^{n}-1$
+
+
+
 
 COMPLEMENTAR INTEGER RANGE n TO m ó range m downto n
 
@@ -49,6 +104,8 @@ punto fijo y flotante
 <br>
 <figcaption>Fuente: https://www.geocities.ws/curso_tecnologia_electronica/VHDL/STX-VHDL.pdf</figcaption>
 </div>
+
+
 
 <h3>Asignación</h3>
 
