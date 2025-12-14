@@ -30,7 +30,7 @@ a  : bit := '1';
 b  : bit := '0';
 ```
 
-<h5>bit_vector: es un vector de bits (ej: range 0 to 3 o range 3 downto 0) que no tiene representación numérica.</h5>
+<h5>bit_vector: representa un vector de bits (ej: range 0 to 3 o range 3 downto 0) que no tiene representación numérica.</h5>
 
 ```vhdl
 a : bit_vector(3 downto 0) := "1010";
@@ -49,14 +49,14 @@ contador : integer range 0 to 100;
 
 Asimismo, existen dos subtipos de datos derivados de integer y definidos por VHDL, los cuales son natural y positive.
 
-<h5>natural: integer para almacenar números mayores o iguales que cero.</h5>
+<h5>natural: representa un numero integer para almacenar números mayores o iguales que cero.</h5>
 
 ```vhdl
 a : natural := 0;
 b : natural := 1;
 ```
 
-<h5>natural: integer para almacenar números mayores que cero.</h5>
+<h5>natural: representa un numero integer para almacenar números mayores que cero.</h5>
 
 ```vhdl
 a : positive := 4;
