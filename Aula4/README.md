@@ -11,7 +11,7 @@ VHDL es un lenguaje de descripción de hardware a través del cual se describe (
 
 <h3>Tipos de datos</h3>
 
-En VHDL existen diferentes tipos de datos para almacenar bits, números enteros, punto fijo y punto flotante, que pueden ser utilizados como puertos de entrada/salida, señales, variables o constantes.
+En VHDL existen diferentes tipos de datos para almacenar bits, números enteros, punto fijo y punto flotante, que pueden ser utilizados en puertos de entrada/salida, señales, variables o constantes.
 
 <h4>1. Paquete standard de la biblioteca std</h4>
 
@@ -88,7 +88,7 @@ use ieee.std_logic_1164.all;
 a : std_logic := '1';
 ```
 
-<h5>std_logic_vector: representa un vector de bits en el que cada bit representa un estado lógico (ej: range 0 to 3 o range 3 downto 0) y no tiene representación numérica.</h5>
+<h5>std_logic_vector: representa un vector de bits en el que cada bit representa un estado lógico (ej: range 0 to 3 o range 3 downto 0) y no tiene representación numérica; por tanto, no es posible realizar operaciones aritméticas.</h5>
 
 ```vhdl
 library ieee;
@@ -97,13 +97,16 @@ use ieee.std_logic_1164.all;
 a : std_logic_vector(7 downto 0) := (others => '0');
 ```
 
-<h4>Paquete numeric_std de la biblioteca IEEE</h4>
+<h4>3. Paquete numeric_std de la biblioteca IEEE</h4>
 
 El paquete numeric_std permite definir tipos de datos de números binarios como `signed` y `unsigned`, además de operaciones aritméticas (+, -, *, ), comparaciones (=, /=, <, >, <=, >=) y desplazamientos (shift_left, shift_right, rotate_left, rotate_right).
 
 <h5>signed</h5>
 
-Los vectores de bits `signed` son aquellos que tienen representación negativa y positiva, donde el MSB indica el signo, 0 es positivo y 1 es negativo. Un número entero con signo de n bits es representado desde $\frac{-2^{n}}{2}$ a $\frac{2^{n}}{2}-1$.
+Los vectores de bits `signed` son aquellos que representan un número entero con signo, es decir, negativo y positivo, donde el MSB indica el signo, 0 es positivo y 1 es negativo. Un número entero con signo de n bits es representado desde $\frac{-2^{n}}{2}$ a $\frac{2^{n}}{2}-1$.
+
+> [!NOTE]
+> Si el MSB es 1, el número se determinar con complemento a2
 
 ```vhdl
 library ieee;
@@ -114,7 +117,7 @@ a : signed(7 downto 0) := "11111111"; -- -1
 
 <h5>unsigned</h5>
 
-Los vectores de bits `unsigned` son aquellos que tienen representación solo positiva, es decir, para mayor o igual que 0. Un número entero sin signo de n bits es representado desde $0$ a $2^{n}-1$.
+Los vectores de bits `unsigned` son aquellos que representan un número entero sin signo, es decir, solo positivo (números mayores o iguales que 0). Un número entero sin signo de n bits es representado desde $0$ a $2^{n}-1$.
 
 ```vhdl
 library ieee;
@@ -123,7 +126,7 @@ use ieee.numeric_std.all;
 a : unsigned(7 downto 0) := "11111111"; -- 255
 ```
 
-<h4>Paquete fixed_pkg y float_pkg de la biblioteca IEEE</h4>
+<h4>4. Paquete fixed_pkg y float_pkg de la biblioteca IEEE</h4>
 
 Los paquetes fixed_pkg y float_pkg permiten definir tipos de datos de números binarios con decimales fijos `signed` y `unsigned` (sfixed y ufixed) y decimales flotantes (float).
 
@@ -152,13 +155,57 @@ b : float64;
 b <= to_float(2.718, float64);
 ```
 
+<h4>Conversiones</h4>
+
+Las conversiones entre tipos de datos en VHDL son utilizadas para cambiar la representación numérica entre enteros y vectores de bits.
+
 <div align="center">
-<img src="image-10.png" alt="Conversión entre tipos de datos VHDL"/>
+<img src="image-10.png" width="300" alt="Conversión entre tipos de datos VHDL"/>
 <br>
 <figcaption>Fuente: https://blog.csdn.net/weixin_30723433/article/details/95658653</figcaption>
 </div>
 
-<h3>Operaciones</h3>
+<h5>Conversión entre vectores de bits</h5>
+
+A pesar de que la conversión entre vectores de bits no modifica los bits, el tipo de dato sí es modificado, lo cual es importante en VHDL para conectar un dato `signed`, `unsigned` a un dato `std_logic_vector` o viceversa; asimismo, al utilizar librerías que esperan el tipo de dato específico, ya sea `signed`, `unsigned` o `std_logic_vector`.
+
+> [!NOTE]
+> Hay que tener el dato en `std_logic_vector` para manejar buses, registros o puertos y para concatenar bits \
+> Hay que tener el dato en `signed` o `unsigned` para operar aritméticamente 
+
+<h6>std_logic_vector y unsigned</h6>
+
+```vhdl
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+a : std_logic_vector(3 downto 0) := "1010";
+b : unsigned(3 downto 0);
+c : signed(3 downto 0);
+
+b <= unsigned(a);  -- Ahora es un vector de bits que representa 10
+C_v <= std_logic_vector(A_u);  -- 
+
+
+
+
+
+b <= unsigned(a);  -- Ahora es un vector de bits que representa 10
+c <= signed(a);    -- Ahora es un vector de bits que representa -6
+```
+
+<h5>Conversión entre enteros y vectores de bits</h5>
+
+```vhdl
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+
+```
+
+<h4>Operaciones</h4>
 
 <div align="center">
 <img src="image-14.png" alt="Operaciones con diferentes tipos de datos"/>
