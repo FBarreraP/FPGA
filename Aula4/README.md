@@ -160,7 +160,7 @@ b <= to_float(2.718, float64);
 Las conversiones entre tipos de datos en VHDL son utilizadas para cambiar la representación numérica entre enteros y vectores de bits.
 
 <div align="center">
-<img src="image-10.png" width="1000" alt="Conversión entre tipos de datos VHDL"/>
+<img src="image-10.png" width="800" alt="Conversión entre tipos de datos VHDL"/>
 <br>
 <figcaption>Fuente: https://blog.csdn.net/weixin_30723433/article/details/95658653</figcaption>
 </div>
