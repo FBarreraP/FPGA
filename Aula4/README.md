@@ -1,6 +1,6 @@
 <h1>Aula 4</h1>
 
-Esta clase consiste en realizar una introducción a VHDL en cuanto a los tipos de datos, los tipos de sentencias; además de presentar la entidad y la arquitectura de circuitos digitales.
+Esta clase consiste en realizar una introducción a VHDL en cuanto a los tipos de datos, los tipos de sentencias; además de presentar la entidad y la arquitectura para diseñar hardware.
 
 <h2>VHDL</h2>
 
@@ -11,11 +11,14 @@ VHDL es un lenguaje de descripción de hardware a través del cual se describe (
 
 <h3>Tipos de datos</h3>
 
-En VHDL existen diferentes tipos de datos para almacenar bits, números enteros, punto fijo y punto flotante, que pueden ser utilizados como puertos de entrada/salida, señales o constantes.
+En VHDL existen diferentes tipos de datos para almacenar bits, números enteros, punto fijo y punto flotante, que pueden ser utilizados como puertos de entrada/salida, señales, variables o constantes.
 
 <h4>1. Paquete standard de la biblioteca std</h4>
 
-Para utilizar el paquete estándar de VHDL no hay que importar ninguna librería.
+El paquete standard en VHDL contiene los tipos de datos boolean, bit, bit_vector, integer, time, entre otros; además de operaciones lógicas y aritméticas para operar estos tipos de datos.
+
+> [!IMPORTANT]
+>Para utilizar el paquete estándar de VHDL no hay que importar ninguna librería.
 
 <h5>boolean: representa false o true</h5>
 
@@ -30,7 +33,7 @@ a  : bit := '1';
 b  : bit := '0';
 ```
 
-<h5>bit_vector: representa un vector de bits (ej: range 0 to 3 o range 3 downto 0) que no tiene representación numérica.</h5>
+<h5>bit_vector: representa un vector de bits en el que cada bit representa un estado lógico (ej: range 0 to 3 o range 3 downto 0) y no tiene representación numérica.</h5>
 
 ```vhdl
 a : bit_vector(3 downto 0) := "1010";
@@ -56,35 +59,98 @@ a : natural := 0;
 b : natural := 1;
 ```
 
-<h5>natural: representa un numero integer para almacenar números mayores que cero.</h5>
+<h5>positive: representa un numero integer para almacenar números mayores que cero.</h5>
 
 ```vhdl
 a : positive := 4;
 b : positive := 1;
 ```
 
-<h5>time: utilizado para delays.</h5>
+<h5>time: representa delays.</h5>
 
 ```vhdl
 t1 : time := 10 ns;
 ```
 
-> [!NOTE]
-> Un número entero con signo de n bits es representado desde $\frac{-2^{n}}{2}$ a $\frac{2^{n}}{2}-1$ \
-> Un número entero sin signo de n bits es representado desde $0$ a $2^{n}-1$
-
 <h4>2. paquete std_logic_1164 de la biblioteca IEEE</h4>
-- std_logic: representa diferentes estados lógicos:'U', 'X', '0', '1', 'Z', 'W', 'L', 'H', '-'.
 
-COLOCAR LOS SIGNIFICADOS DE LOS ESTADOS LÓGICOS
+El paquete std_logic_1164 permite definir nueve estados en los tipos de datos std_logic y std_logic_vector, los cuales permiten modelar el comportamiento de circuitos digitales de manera más real y detallada con respecto al comportamiento en hardware físico.
 
-- std_logic_vector: es vector de bits en el que cada bit representa un estado lógico (ej: (m to n); (n downto m)).
+> [!IMPORTANT]
+>Para utilizar el paquete std_logic_1164 de VHDL hay que importar la librería ieee y el paquete ieee.std_logic_1164.all.
+
+<h5>std_logic: representa diferentes estados lógicos:'U': uninitialized, 'X': unknown, '0': lógica baja, '1': lógica alta, 'Z': high impedance, 'W': weak unknown, 'L': weak 0, 'H': weak 0, '-': don't care.</h5>
+
+```vhdl
+library ieee;
+use ieee.std_logic_1164.all;
+
+a : std_logic := '1';
+```
+
+<h5>std_logic_vector: representa un vector de bits en el que cada bit representa un estado lógico (ej: range 0 to 3 o range 3 downto 0) y no tiene representación numérica.</h5>
+
+```vhdl
+library ieee;
+use ieee.std_logic_1164.all;
+
+a : std_logic_vector(7 downto 0) := (others => '0');
+```
 
 <h4>Paquete numeric_std de la biblioteca IEEE</h4>
-signed y unsigned
 
-<h4>Paquete fixed_pkg y float_pkg de la biblioteca </h4>
-punto fijo y flotante
+El paquete numeric_std permite definir tipos de datos de números binarios como `signed` y `unsigned`, además de operaciones aritméticas (+, -, *, ), comparaciones (=, /=, <, >, <=, >=) y desplazamientos (shift_left, shift_right, rotate_left, rotate_right).
+
+<h5>signed</h5>
+
+Los vectores de bits `signed` son aquellos que tienen representación negativa y positiva, donde el MSB indica el signo, 0 es positivo y 1 es negativo. Un número entero con signo de n bits es representado desde $\frac{-2^{n}}{2}$ a $\frac{2^{n}}{2}-1$.
+
+```vhdl
+library ieee;
+use ieee.numeric_std.all;
+
+a : signed(7 downto 0) := "11111111"; -- -1
+```
+
+<h5>unsigned</h5>
+
+Los vectores de bits `unsigned` son aquellos que tienen representación solo positiva, es decir, para mayor o igual que 0. Un número entero sin signo de n bits es representado desde $0$ a $2^{n}-1$.
+
+```vhdl
+library ieee;
+use ieee.numeric_std.all;
+
+a : unsigned(7 downto 0) := "11111111"; -- 255
+```
+
+<h4>Paquete fixed_pkg y float_pkg de la biblioteca IEEE</h4>
+
+Los paquetes fixed_pkg y float_pkg permiten definir tipos de datos de números binarios con decimales fijos `signed` y `unsigned` (sfixed y ufixed) y decimales flotantes (float).
+
+<h5>punto fijo</h5>
+
+El tipo de dato punto fijo permite definir la cantidad de bits para la parte entera y la cantidad para la parte decimal; además, se pueden realizar operaciones aritméticas (+, -, *, /), comparaciones y conversiones.
+
+```vhdl
+library ieee;
+use ieee.fixed_pkg.all;
+
+a : sfixed(3 downto -4) := to_sfixed(1.375, a'high, a'low);  -- 4 bits enteros + 4 fraccionales
+b : ufixed(2 downto -5) := to_ufixed(2.5, b'high, b'low); -- 3 bits enteros + 5 fraccionales
+```
+
+<h5>flotante</h5>
+
+Los números de punto flotante consisten en 32 bits, los cuales tienen 1 bit de signo, 8 bits de exponente y 23 bits de mantisa de acuerdo a la norma IEEE 754; además, se pueden realizar operaciones aritméticas y conversiones desde o hacia enteros y punto fijo.
+
+```vhdl
+library ieee;
+use ieee.float_pkg.all;
+
+a : float32 := to_float(3.14, float32);
+b : float64;
+b <= to_float(2.718, float64);
+```
 
 <div align="center">
 <img src="image-10.png" alt="Conversión entre tipos de datos VHDL"/>
@@ -99,8 +165,6 @@ punto fijo y flotante
 <br>
 <figcaption>Fuente: https://www.geocities.ws/curso_tecnologia_electronica/VHDL/STX-VHDL.pdf</figcaption>
 </div>
-
-
 
 <h3>Asignación</h3>
 
