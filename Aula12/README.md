@@ -8,7 +8,7 @@ Es recomendable:
 
 1. Uno o dos registros (señales) con clk (flip-flops) para entradas digitales para evitar metastabilidad
 2. Evitar process inecesarios
-3. No cambiar el valor de un registro (seña)l en más de un process
+3. No cambiar el valor de un registro (señal) en más de un process
 
 Lectura digital
 
