@@ -38,7 +38,7 @@ architecture behavioral of Boton_Led is
 end behavioral;
 ```
 
-<div align="center">Blink</div>
+<h3 style="text-align: center;">Blink</h3>
 
 ```vhdl
 library ieee;
