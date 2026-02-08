@@ -4,13 +4,138 @@ Esta clase consiste en .
 
 <h2></h2>
 
+> [!IMPORTANT]
+>Las señales no se actualizan inmediatamente, se demoran un ciclo de reloj para recibir el nuevo valor. 
+>Las variable se actualizan inmediatamente.
+
 Es recomendable:
 
 1. Uno o dos registros (señales) con clk (flip-flops) para entradas digitales para evitar metastabilidad
 2. Evitar process inecesarios
 3. No cambiar el valor de un registro (señal) en más de un process
+4. Utilizar case para estados e if para condiciones.
 
-Lectura digital
+<h3>Hola mundo</h3>
+
+```vhdl
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity Boton_Led is
+	port (
+		a : in std_logic; 
+		
+		b: out std_logic  
+	);
+end entity Boton_Led;
+
+architecture behavioral of Boton_Led is
+
+	BEGIN
+
+	b <= a;
+	
+end behavioral;
+```
+
+<div align="center">Blink</div>
+
+```vhdl
+library ieee;
+use ieee.std_logic_1164.all;
+USE IEEE.NUMERIC_STD.ALL;
+
+entity BlinkLed is
+	generic(
+		delay : integer := 25000000;
+		N : integer := 25
+	);
+	port (
+		clk : in std_logic;
+		
+		b: out std_logic  
+	);
+end entity BlinkLed;
+
+architecture behavioral of BlinkLed is
+
+	signal temp : std_logic := '0';
+	signal counter : unsigned(N-1 downto 0) := (others => '0');		
+
+	BEGIN
+	
+	process(clk)
+		begin
+		if rising_edge(clk) then
+			if counter = to_unsigned(delay, N) then
+				counter <= (others => '0');
+				temp <= not temp;
+			else
+				counter <= counter + 1;
+			end if;
+		end if;
+	end process;
+	
+	b <= temp;
+	
+end behavioral;
+```
+
+<h3>Test bench del Blink</h3>
+
+```vhdl
+LIBRARY ieee;                                               
+USE ieee.std_logic_1164.all;                                
+
+ENTITY BlinkLed_tb IS
+END BlinkLed_tb;
+
+ARCHITECTURE BlinkLed_arch OF BlinkLed_tb IS
+-- constants                                                 
+-- signals                                                   
+SIGNAL b : STD_LOGIC;
+SIGNAL clk : STD_LOGIC;
+
+COMPONENT BlinkLed
+	generic(
+		delay : integer;
+		N : integer
+	);
+	PORT (
+		b : out STD_LOGIC;
+		clk : IN STD_LOGIC
+	);
+END COMPONENT;
+
+BEGIN
+
+	i1 : BlinkLed
+	generic map(
+		delay => 5000000, --100ms
+		N => 23 --bits
+	)
+	PORT MAP (
+	-- list connections between master ports and signals
+		b => b,
+		clk => clk
+	);	
+
+	clock: process
+	begin
+		-- Un bucle infinito para la generación continua del reloj
+		loop
+			clk <= '1';
+			wait for 10ns;
+			clk <= '0';
+			wait for 10ns;
+		end loop;
+	END PROCESS clock; 
+	
+END BlinkLed_arch;
+
+```
+
+<h3>Lectura digital</h3>
 
 ```vhdl
 library ieee;
